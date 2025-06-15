@@ -1,69 +1,47 @@
-import React, { useState } from "react";
-import { account, ID } from "./lib/appwrite";
+import React from "react";
+import { Button } from "./components/ui/button";
+import auth from "./services/auth";
 
 const App = () => {
-  const [loggedInUser, setLoggedInUser] = useState<{ name: string } | null>(
-    null
-  );
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-
-  async function login(email: string, password: string) {
-    await account.createEmailPasswordSession(email, password);
-    setLoggedInUser(await account.get());
-  }
+  const { signup, getCurrentUser, login, logout } = auth;
+  const user = {
+    name: "demo",
+    email: "demo@gmail.com",
+    password: "demo1234",
+  };
 
   return (
-    <div>
-      <p>
-        {loggedInUser ? `Logged in as ${loggedInUser.name}` : "Not logged in"}
-      </p>
-
-      <form>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <button type="button" onClick={() => login(email, password)}>
-          Login
-        </button>
-
-        <button
-          type="button"
-          onClick={async () => {
-            await account.create(ID.unique(), email, password, name);
-            login(email, password);
-          }}
-        >
-          Register
-        </button>
-
-        <button
-          type="button"
-          onClick={async () => {
-            await account.deleteSession("current");
-            setLoggedInUser(null);
-          }}
-        >
-          Logout
-        </button>
-      </form>
+    <div className="min-h-screen bg-background dark">
+      <Button
+        onClick={() => {
+          signup(user)
+            .then((res) => console.log(res))
+            .catch((error) => console.log(error));
+        }}
+      >
+        signup
+      </Button>
+      <Button
+        onClick={() => {
+          login({ email: user.email, password: user.password })
+            .then(console.log)
+            .catch(console.log);
+        }}
+      >
+        login
+      </Button>
+      <Button onClick={()=>{
+        logout().then(console.log).catch(console.log)
+      }}>logout</Button>
+      <Button
+        onClick={() => {
+          getCurrentUser()
+            .then((res) => console.log(res))
+            .catch((error) => console.log(error));
+        }}
+      >
+        get login user
+      </Button>
     </div>
   );
 };
