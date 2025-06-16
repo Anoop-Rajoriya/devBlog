@@ -1,4 +1,4 @@
-import { account, ID } from "@/lib/appwrite";
+import { account, ID } from "./appwriteConfig";
 
 type SignupProps = {
   name: string;
@@ -11,43 +11,46 @@ type LoginProps = {
   password: string;
 };
 
-const auth = {
-  async signup({ name, email, password }: SignupProps) {
+const authService = {
+  async register({ name, email, password }: SignupProps) {
     try {
       const user = account.create(ID.unique(), email, password, name);
       return user;
-    } catch (signupError) {
-      console.error("Error signuping account:", signupError);
-      throw signupError;
+    } catch (error) {
+      console.error("Auth register error ->", error);
+      return error;
     }
   },
+
   async login({ email, password }: LoginProps) {
     try {
       const session = account.createEmailPasswordSession(email, password);
       return session;
-    } catch (loginError) {
-      console.error("Error logging in:", loginError);
-      throw loginError;
+    } catch (error) {
+      console.error("Auth login error ->", error);
+      return error;
     }
   },
+
   async logout() {
     try {
       account.deleteSession("current");
       return true;
-    } catch (logoutError) {
-      console.error("Error logging out:", logoutError);
-      throw logoutError;
+    } catch (error) {
+      console.error("Auth logout error ->", error);
+      return error;
     }
   },
+
   async getCurrentUser() {
     try {
       const user = await account.get();
       return user;
     } catch (error) {
-      console.error("No active session or error fetching user:", error);
+      console.error("Auth get current user error ->", error);
       return null;
     }
   },
 };
 
-export default auth;
+export default authService;
