@@ -1,13 +1,25 @@
-import { Provider } from "react-redux";
-import { store } from "@/app/store";
-import { Home } from "./pages";
+import React from 'react'
+import { Home } from './pages'
 
-const App = () => {
+function App() {
   return (
-    <Provider store={store}>
-      <Home />
-    </Provider>
-  );
-};
+    <Home/>
+  )
+}
 
-export default App;
+export default App
+
+
+// import { Provider } from "react-redux";
+// import { store } from "@/app/store";
+// import { Home } from "./pages";
+
+// const App = () => {
+//   return (
+//     <Provider store={store}>
+//       <Home />
+//     </Provider>
+//   );
+// };
+
+// export default App;
