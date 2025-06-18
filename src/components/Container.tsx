@@ -2,23 +2,26 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 type Props = {
-  type?: string;
-  className?: string;
+  type?: "header" | "main" | "footer" | "section";
   children: React.ReactNode;
+  className?: string;
 };
 
-const Container = ({ type, className, children }: Props) => {
-  const classes = cn("w-full max-w-[1200px] px-2", className);
+function Container({ type, children, className }: Props) {
+  const styles = cn("max-w-[1200px] w-full mx-auto px-3 flex", className);
 
-  if (type === "header") {
-    return <header className={classes}>{children}</header>;
-  } else if (type === "main") {
-    return <main className={classes}>{children}</main>;
-  } else if (type === "footer") {
-    return <footer className={classes}>{children}</footer>;
-  } else {
-    return <div className={classes}>{children}</div>;
+  switch (type) {
+    case "header":
+      return <header className={styles}>{children}</header>;
+    case "main":
+      return <main className={styles}>{children}</main>;
+    case "footer":
+      return <footer className={styles}>{children}</footer>;
+    case "section":
+      return <section className={styles}>{children}</section>;
+    default:
+      return <div className={styles}>{children}</div>;
   }
-};
+}
 
 export default Container;

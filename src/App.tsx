@@ -1,25 +1,12 @@
-import React from 'react'
-import { Home } from './pages'
+import AppLayout from "./AppLayout";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 function App() {
   return (
-    <Home/>
-  )
+    <ThemeProvider defaultTheme="dark" storageKey="devBlog-ui-theme">
+      <AppLayout />
+    </ThemeProvider>
+  );
 }
 
-export default App
-
-
-// import { Provider } from "react-redux";
-// import { store } from "@/app/store";
-// import { Home } from "./pages";
-
-// const App = () => {
-//   return (
-//     <Provider store={store}>
-//       <Home />
-//     </Provider>
-//   );
-// };
-
-// export default App;
+export default App;
