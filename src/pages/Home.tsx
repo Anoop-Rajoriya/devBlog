@@ -1,9 +1,6 @@
-import React from 'react'
-
+import Container from "@/components/Container";
 function Home() {
-  return (
-    <div>Home</div>
-  )
+  return <Container className="flex-grow">Home</Container>;
 }
 
-export default Home
+export default Home;
