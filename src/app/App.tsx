@@ -1,18 +1,18 @@
 import { BrowserRouter } from "react-router";
 import { Provider } from "react-redux";
 import { store } from "@/service/redux";
-import AppRoute from "./AppRoute";
+import AppRoutes from "./AppRoutes";
 import { ThemeProvider } from "./ThemeProvider";
 
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Provider store={store}>
         <ThemeProvider defaultTheme="dark" storageKey="DevBlog-Theme">
-          <AppRoute />
+          <AppRoutes />
         </ThemeProvider>
-      </BrowserRouter>
-    </Provider>
+      </Provider>
+    </BrowserRouter>
   );
 }
 

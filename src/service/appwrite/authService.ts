@@ -1,6 +1,6 @@
 import { account, ID } from "./appwrite";
 
-async function registerUser({
+async function createUser({
   name,
   email,
   password,
@@ -12,11 +12,10 @@ async function registerUser({
   try {
     return await account.create(ID.unique(), email, password, name);
   } catch (error) {
-    console.error("Auth error registerUser() |", error);
-    return error;
+    throw error;
   }
 }
-async function loginUser({
+async function createUserSession({
   email,
   password,
 }: {
@@ -26,28 +25,24 @@ async function loginUser({
   try {
     return await account.createEmailPasswordSession(email, password);
   } catch (error) {
-    console.log("Auth error loginUser() |", error);
-    return error;
+    throw error;
   }
 }
-async function logoutUser() {
+async function deleteUserSession() {
   try {
     await account.deleteSession("current");
+    return true;
   } catch (error) {
-    console.log("Auth error logoutUser |", error);
-    return error;
+    throw error;
   }
 }
 
 async function getCurrentUser() {
   try {
-    const user = await account.get();
-    if (user) return user;
-    return null;
+    return await account.get();
   } catch (error) {
-    console.error("Auth Error getCurrentUser() |", error);
-    return error;
+    throw error;
   }
 }
 
-export { registerUser, loginUser, logoutUser, getCurrentUser };
+export { createUser, createUserSession, deleteUserSession, getCurrentUser };

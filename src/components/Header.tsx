@@ -1,10 +1,9 @@
 import Logo from "./Logo";
-import useAuth from "@/hooks/useAuth";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router";
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user } = { user: null };
   const navigate = useNavigate();
 
   return (
