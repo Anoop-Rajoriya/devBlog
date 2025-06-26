@@ -55,101 +55,103 @@ function Register() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader className="flex flex-col items-center justify-center gap-2">
-        <CardTitle className="text-xl md:text-2xl font-semibold">
-          Register Your Account
-        </CardTitle>
-        <CardDescription className="text-center">
-          Enter following details bellow to register you account.
-        </CardDescription>
-        {error && (
-          <p className="text-destructive capitalize text-center">{error}</p>
-        )}
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-4 px-3"
-          >
-            <FormField
-              name="name"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="User name"
-                      {...field}
-                      disabled={loading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="email"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="User email"
-                      {...field}
-                      disabled={loading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="password"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="User password"
-                      {...field}
-                      disabled={loading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+    <Container className="min-h-screen flex items-center justify-center">
+      <Card className="w-full max-w-md mx-auto">
+        <CardHeader className="flex flex-col items-center justify-center gap-2">
+          <CardTitle className="text-xl md:text-2xl font-semibold">
+            Register Your Account
+          </CardTitle>
+          <CardDescription className="text-center">
+            Enter following details bellow to register you account.
+          </CardDescription>
+          {error && (
+            <p className="text-destructive capitalize text-center">{error}</p>
+          )}
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-4 px-3"
+            >
+              <FormField
+                name="name"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="User name"
+                        {...field}
+                        disabled={loading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="email"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="User email"
+                        {...field}
+                        disabled={loading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="password"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="User password"
+                        {...field}
+                        disabled={loading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button
+                type="submit"
+                className="w-full font-semibold"
+                disabled={loading}
+              >
+                {loading ? "Registing..." : "Register"}
+              </Button>
+            </form>
+          </Form>
+          <Container className="flex-col gap-4 mt-2">
             <Button
-              type="submit"
-              className="w-full font-semibold"
+              variant="outline"
+              className="font-semibold"
               disabled={loading}
             >
-              {loading ? "Registing..." : "Register"}
+              Continue with Google
             </Button>
-          </form>
-        </Form>
-        <Container className="flex-col gap-4 mt-2">
-          <Button
-            variant="outline"
-            className="font-semibold"
-            disabled={loading}
-          >
-            Continue with Google
-          </Button>
-          <p className="w-full text-center text-sm md:text-base">
-            Do have an account?
-            <Link to="/login" className="cursor-pointer underline px-2">
-              Log in
-            </Link>
-          </p>
-        </Container>
-      </CardContent>
-    </Card>
+            <p className="w-full text-center text-sm md:text-base">
+              Do have an account?
+              <Link to="/login" className="cursor-pointer underline px-2">
+                Log in
+              </Link>
+            </p>
+          </Container>
+        </CardContent>
+      </Card>
+    </Container>
   );
 }
 

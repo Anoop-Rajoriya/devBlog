@@ -1,4 +1,4 @@
-import { setUser, setLoading, setError, logout } from "./authSlice";
+import { setUser, logout, clearUser } from "./authSlice";
 import store from "./store";
 
-export { store, setUser, setLoading, setError, logout };
+export { store, setUser, clearUser, logout };

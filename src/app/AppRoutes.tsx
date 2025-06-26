@@ -1,42 +1,37 @@
-import { Routes, Route } from "react-router";
-import {
-  Home,
-  Dashboard,
-  Login,
-  Register,
-  Post,
-  Create,
-  EditPost,
-  ErrorPage,
-} from "@/pages";
+import { Route, Routes } from "react-router";
 import AppLayout from "./AppLayout";
-import { ProtectedRoutes, PublicOnlyRoutes } from "./protected-routes";
+import { Create, Dashboard, Home, Login, Register } from "@/pages";
+import { PrivateRoutes, PublicOnlyRoutes } from "./protected-routes";
+import Error from "@/pages/ErrorPage";
 
-export default function AppRoutes() {
+const AppRoutes = () => {
   return (
     <Routes>
-      {/* AppLayout manage all layout  */}
+      {/* Public route (Accesible to everyone) */}
       <Route element={<AppLayout />}>
-        {/* Public routes (available to everyone) */}
-        <Route path="/" element={<Home />} />
-
-        {/* Only unauthenticated users can access */}
-        <Route element={<PublicOnlyRoutes />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
-
-        {/* Only authenticated users can access */}
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/edit/:postId" element={<EditPost />} />
-        </Route>
-
-        {/* Catch-all error route */}
-        <Route path="*" element={<ErrorPage />} />
+        <Route index element={<Home />} />
       </Route>
+
+      {/* Public only routes 
+      (Accesible to only unauthenticated user) */}
+      <Route element={<PublicOnlyRoutes />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Route>
+
+      {/* Proteced routes 
+      (Accesible to only authenticated user) */}
+      <Route element={<PrivateRoutes />}>
+        <Route element={<AppLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/create" element={<Create />} />
+        </Route>
+      </Route>
+
+        {/* Fallback route */}
+      <Route path="*" element={<Error />} />
     </Routes>
   );
-}
+};
+
+export default AppRoutes;

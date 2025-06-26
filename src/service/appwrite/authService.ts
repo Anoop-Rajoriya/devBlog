@@ -39,10 +39,13 @@ async function deleteUserSession() {
 
 async function getCurrentUser() {
   try {
-    return await account.get();
-  } catch (error) {
-    throw error;
+    const user = await account.get();
+    if (user) return user;
+  } catch (error: any) {
+    console.log(error.message);
   }
+
+  return null;
 }
 
 export { createUser, createUserSession, deleteUserSession, getCurrentUser };

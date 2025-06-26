@@ -1,9 +1,7 @@
-import React from 'react'
+import { Container } from "@/components";
 
 function Error() {
-  return (
-    <div>Error</div>
-  )
+  return <Container>Error</Container>;
 }
 
-export default Error
+export default Error;

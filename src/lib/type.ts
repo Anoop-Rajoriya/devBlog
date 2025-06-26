@@ -1,4 +1,6 @@
-export type AuthType = {
-  user: any;
-  stauts: any;
+export type StoreType = {
+  auth: {
+    user: any;
+    status: boolean;
+  };
 };

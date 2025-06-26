@@ -1,18 +1,25 @@
-import Container from "@/components/Container";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import { Outlet, useLocation } from "react-router";
+import { Container, Loader, Header, Footer } from "@/components";
+import useAuth from "@/hooks/auth/useAuth";
+import { Outlet } from "react-router";
 
 function AppLayout() {
-  const { pathname } = useLocation();
-  const layoutRoutes = ["/", "/dashboard", "/post", "/create", "/edit"];
-  const showLayout = layoutRoutes.includes(pathname);
+  const authLoading = useAuth();
+
+  if (authLoading) {
+    return (
+      <Container className="min-h-screen flex items-center justify-center">
+        <Loader className="w-full h-full" />
+      </Container>
+    );
+  }
 
   return (
-    <Container className="flex-col min-h-screen justify-center">
-      {showLayout && <Header />}
-      <Outlet />
-      {showLayout && <Footer />}
+    <Container className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      <Footer />
     </Container>
   );
 }

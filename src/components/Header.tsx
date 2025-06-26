@@ -1,9 +1,15 @@
+import { useSelector } from "react-redux";
 import Logo from "./Logo";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router";
+import type { AuthSliceType } from "@/lib/type";
+
+type Prop = {
+  auth: AuthSliceType;
+};
 
 const Header = () => {
-  const { user } = { user: null };
+  const { user } = useSelector((state: Prop) => state.auth);
   const navigate = useNavigate();
 
   return (
