@@ -17,11 +17,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/Container";
 
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import useRegister from "@/hooks/auth/useRegister";
 
 const formSchema = z.object({
   name: z
@@ -36,22 +37,17 @@ const formSchema = z.object({
 });
 
 function Register() {
-  // auth
-  const [loading, error] = [false, null];
-  const navigate = useNavigate();
-
-  // form
+  // Form validation using react-hook-form with shadcn-ui-form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { name: "", email: "", password: "" },
   });
 
+  // Form data submision with custom hook (useRegister())
+  const { register, loading, error } = useRegister();
   const onSubmit = async (userDetails: z.infer<typeof formSchema>) => {
-    // const registerResponse = await registerUser(userDetails);
-    // form.reset();
-    // if (registerResponse) {
-    //   navigate("/login");
-    // }
+    await register(userDetails);
+    form.reset();
   };
 
   return (

@@ -1,6 +1,3 @@
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import {
   Card,
   CardContent,
@@ -8,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Container from "@/components/Container";
 import {
   Form,
   FormControl,
@@ -19,7 +15,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router";
+import { Container } from "@/components";
+import { Link } from "react-router";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import useLogin from "@/hooks/auth/useLogin";
 
 const formSchema = z.object({
@@ -30,11 +30,7 @@ const formSchema = z.object({
 });
 
 function Login() {
-  // auth
-  const { login, loading, error } = useLogin();
-  const navigate = useNavigate();
-
-  // form
+  // Form validation with react-hook-form and shadcn-ui-form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,7 +39,13 @@ function Login() {
     },
   });
 
-  const onSubmit = async (userDetails: z.infer<typeof formSchema>) => {};
+  // Form submission using custom hook (useLogin())
+  const { login, loading, error } = useLogin();
+
+  const onSubmit = async (userDetails: z.infer<typeof formSchema>) => {
+    await login(userDetails);
+    form.reset();
+  };
 
   return (
     <Container className="min-h-screen flex items-center justify-center">
