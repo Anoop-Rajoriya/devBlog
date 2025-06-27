@@ -8,7 +8,7 @@ function AppLayout() {
   if (authLoading) {
     return (
       <Container className="min-h-screen flex items-center justify-center">
-        <Loader className="w-full h-full" />
+        <Loader />
       </Container>
     );
   }

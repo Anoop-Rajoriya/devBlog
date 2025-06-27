@@ -1,7 +1,7 @@
 import { Container } from "@/components";
 
-function Error() {
-  return <Container>Error</Container>;
+function ErrorPage() {
+  return <Container>ErrorPage</Container>;
 }
 
-export default Error;
+export default ErrorPage;

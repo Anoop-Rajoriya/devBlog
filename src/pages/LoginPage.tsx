@@ -15,50 +15,47 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Container from "@/components/Container";
-
+import { Container, Loader } from "@/components";
 import { Link } from "react-router";
-
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import useRegister from "@/hooks/auth/useRegister";
+import useLogin from "@/hooks/auth/useLogin";
 
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, { message: "Name must be at least 2 characters long" }),
-
-  email: z.string().email({ message: "Invalid email address" }),
-
+  email: z.string().email({ message: "Invalid email address." }),
   password: z
     .string()
-    .min(6, { message: "Password must be at least 6 characters long" }),
+    .min(6, { message: "Password must be at least 6 characters long." }),
 });
 
-function Register() {
-  // Form validation using react-hook-form with shadcn-ui-form
+function LoginPage() {
+  // Form validation with react-hook-form and shadcn-ui-form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { name: "", email: "", password: "" },
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
-  // Form data submision with custom hook (useRegister())
-  const { register, loading, error } = useRegister();
+  // Form submission using custom hook (useLogin())
+  const { login, loading, error } = useLogin();
+
   const onSubmit = async (userDetails: z.infer<typeof formSchema>) => {
-    await register(userDetails);
+    await login(userDetails);
     form.reset();
   };
 
   return (
     <Container className="min-h-screen flex items-center justify-center">
       <Card className="w-full max-w-md mx-auto">
-        <CardHeader className="flex flex-col items-center justify-center gap-2">
-          <CardTitle className="text-xl md:text-2xl font-semibold">
-            Register Your Account
+        <CardHeader>
+          <CardTitle className="text-center text-xl md:text-2xl font-bold">
+            Login you account
           </CardTitle>
           <CardDescription className="text-center">
-            Enter following details bellow to register you account.
+            Enter following details bellow to login you account.
           </CardDescription>
           {error && (
             <p className="text-destructive capitalize text-center">{error}</p>
@@ -70,23 +67,6 @@ function Register() {
               onSubmit={form.handleSubmit(onSubmit)}
               className="flex flex-col gap-4 px-3"
             >
-              <FormField
-                name="name"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="User name"
-                        {...field}
-                        disabled={loading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 name="email"
                 control={form.control}
@@ -122,11 +102,14 @@ function Register() {
                 )}
               />
               <Button
+                className="font-semibold"
                 type="submit"
-                className="w-full font-semibold"
                 disabled={loading}
               >
-                {loading ? "Registing..." : "Register"}
+                Login
+                {loading && (
+                  <Loader className="text-primary-foreground" size={4} />
+                )}
               </Button>
             </form>
           </Form>
@@ -139,9 +122,9 @@ function Register() {
               Continue with Google
             </Button>
             <p className="w-full text-center text-sm md:text-base">
-              Do have an account?
-              <Link to="/login" className="cursor-pointer underline px-2">
-                Log in
+              Don't have an account?
+              <Link to="/register" className="cursor-pointer underline px-2">
+                Register
               </Link>
             </p>
           </Container>
@@ -151,4 +134,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default LoginPage;
