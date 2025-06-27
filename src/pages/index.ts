@@ -1,11 +1,11 @@
-import DashboardPage from "@/pages/DashboardPage";
-import HomePage from "@/pages/HomePage";
-import LoginPage from "@/pages/LoginPage";
-import PostPage from "@/pages/PostPage";
-import RegisterPage from "@/pages/RegisterPage";
-import ErrorPage from "@/pages/ErrorPage";
-import CreatePage from "@/pages/CreatePage";
-import EditPostPage from "@/pages/EditePostPage";
+import DashboardPage from "@/pages/Dashboard";
+import HomePage from "@/pages/Home";
+import LoginPage from "@/pages/Login";
+import PostPage from "@/pages/Post";
+import RegisterPage from "@/pages/Register";
+import ErrorPage from "@/pages/Error";
+import CreatePage from "@/pages/Create";
+import EditPostPage from "@/pages/EditePost";
 
 export {
   HomePage,

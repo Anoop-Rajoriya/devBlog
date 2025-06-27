@@ -8,7 +8,7 @@ import {
   LoginPage,
   PostPage,
   RegisterPage,
-  ErrorPage
+  ErrorPage,
 } from "@/pages";
 import { PrivateRoutes, PublicOnlyRoutes } from "./protected-routes";
 
