@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 
 const Footer = () => {
   return (
-    <footer className="border-t-2 border-border flex items-center justify-center gap-2">
+    <footer className="border-t-2 border-border flex items-center justify-center gap-2 mt-2">
       {["github", "linkedIn", "twiiter"].map((name) => (
         <Button key={name} variant="link" className="capitalize">
           {name}
