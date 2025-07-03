@@ -1,5 +1,7 @@
 import { Client, Account, Databases, Storage, ID } from "appwrite";
-import { AppwriteEndpoint, AppwriteProjectId } from "./appwriteConstant";
+
+const AppwriteEndpoint = import.meta.env.VITE_APPWRITE_ENDPOINT;
+const AppwriteProjectId = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 
 const client = new Client()
   .setEndpoint(AppwriteEndpoint)
