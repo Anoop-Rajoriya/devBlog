@@ -12,11 +12,11 @@ import AppInitializer from "./AppInitializer";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={AppStore}>
-      <AppInitializer>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </AppInitializer>
+    <AppInitializer>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AppInitializer>
     </Provider>
   </StrictMode>
 );

@@ -1,4 +1,6 @@
-import AppStore from "./redux.config";
+import AppStore, { type StoreState } from "./redux.config";
+import { setTheme, type Theme } from "./themeSlice";
 
-export {};
+export { setTheme };
+export type { Theme, StoreState };
 export default AppStore;
