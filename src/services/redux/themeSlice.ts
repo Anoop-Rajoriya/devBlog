@@ -9,7 +9,7 @@ interface ThemeState {
 const ThemeStorageKey = "debBlog-ui-theme";
 const getInitialTheme = (): Theme => {
   const storedTheme = localStorage.getItem(ThemeStorageKey) as Theme | null;
-  return storedTheme || "system";
+  return storedTheme || "light";
 };
 
 const initialState: ThemeState = {

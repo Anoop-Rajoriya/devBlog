@@ -25,7 +25,7 @@ const AppInitializer: React.FC<Props> = ({ children }) => {
   }, [theme]);
 
   return (
-    <div className="w-full min-h-screen flex bg-secondary text-foreground">
+    <div className="w-full min-h-screen flex flex-col bg-secondary text-foreground">
       {children}
     </div>
   );

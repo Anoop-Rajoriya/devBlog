@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router";
 import {
   Home,
@@ -9,16 +8,16 @@ import {
   Login,
   Signup,
   Error,
-} from "@/components/pages";
+} from "@/pages";
 
 const App = () => {
   return (
     <Routes>
       <Route index element={<Home />} />
-      <Route path="/post" element={<Post />} />
+      <Route path="/post/:postId" element={<Post />} />
 
       <Route path="/post/create" element={<Create />} />
-      <Route path="/post/edit/:id" element={<Edit />} />
+      <Route path="/post/edit/:postId" element={<Edit />} />
       <Route path="/dashboard" element={<Dashboard />} />
 
       <Route path="/login" element={<Login />} />
