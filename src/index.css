@@ -1,10 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* html,body,:root{
-  height: 100%;
-} */
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -127,65 +123,4 @@
     @apply text-base text-muted-foreground content-[attr(data-placeholder)] pointer-events-none float-left h-0 font-semibold;
   }
 
-  /* code highlighting  */
-  /* index.css */
-  .tiptap pre {
-    @apply bg-black text-white rounded-lg font-mono my-6 p-4 overflow-auto;
-  }
-
-  .tiptap pre code {
-    @apply text-sm bg-transparent p-0;
-  }
-
-  /* Highlight.js theme translation */
-  .hljs-comment,
-  .hljs-quote {
-    color: #616161;
-  }
-
-  .hljs-variable,
-  .hljs-template-variable,
-  .hljs-attribute,
-  .hljs-tag,
-  .hljs-regexp,
-  .hljs-link,
-  .hljs-name,
-  .hljs-selector-id,
-  .hljs-selector-class {
-    color: #f98181;
-  }
-
-  .hljs-number,
-  .hljs-meta,
-  .hljs-built_in,
-  .hljs-builtin-name,
-  .hljs-literal,
-  .hljs-type,
-  .hljs-params {
-    color: #fbbc88;
-  }
-
-  .hljs-string,
-  .hljs-symbol,
-  .hljs-bullet {
-    color: #b9f18d;
-  }
-
-  .hljs-title,
-  .hljs-section {
-    color: #faf594;
-  }
-
-  .hljs-keyword,
-  .hljs-selector-tag {
-    color: #70cff8;
-  }
-
-  .hljs-emphasis {
-    font-style: italic;
-  }
-
-  .hljs-strong {
-    font-weight: 700;
-  }
 }
